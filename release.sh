@@ -10,7 +10,7 @@ git rev-parse HEAD > ./.commit
 chmod u+s "${GITDIR}/bin/busybox"
 find . -type f -name ".gitkeep" -exec rm {} \;
 rm -f ../overlaymount-rootfs.squashfs
-mksquashfs . ../overlaymount-rootfs.squashfs -b 1048576 -comp xz -Xdict-size 100% -always-use-fragments -all-root -e .git -e .gitignore -e .vscode -e release.sh
+mksquashfs . ../overlaymount-rootfs.squashfs -b 1048576 -comp gzip -always-use-fragments -all-root -e .git -e .gitignore -e .vscode -e release.sh
 rm ./.commit
 find . -type d ! -path "*.git*" -empty -exec touch '{}'/.gitkeep \;
 echo "overlaymount-rootfs filesystem has been compressed."
